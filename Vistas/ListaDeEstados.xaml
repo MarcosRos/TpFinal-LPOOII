@@ -1,0 +1,27 @@
+﻿<Window x:Class="Vistas.ListaDeEstados"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
+        Title="ListaDeEstados" Height="300" Width="300">
+    <Window.Resources>
+        <svc:ConversorDeEstados x:Key="ConversorDeEstados" />
+        <Style TargetType="{x:Type Canvas}" BasedOn="{StaticResource plantilla_canvas}" >
+        </Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource plantilla_cajasTexto}" >
+        </Style>
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource plantilla_label}" >
+        </Style>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource plantilla_button}" >
+        </Style>
+    </Window.Resources>
+    <Canvas>
+        <Canvas.Resources>
+            <XmlDataProvider x:Key="Estados" Source="Estados.xml" XPath="/estados"/>
+            
+        </Canvas.Resources>
+        <ListBox Height="100" HorizontalAlignment="Left" Margin="58,39,0,0" Name="listaEstados" VerticalAlignment="Top" Width="157" 
+                 ItemsSource="{Binding Source={StaticResource Estados},XPath=estado/@Name}" />
+        <Rectangle Height="71" HorizontalAlignment="Left" Margin="49,165,0,0" Name="rectanguloFill" Stroke="Black" VerticalAlignment="Top" Width="177" 
+                   Fill="{Binding ElementName=listaEstados, Path=SelectedValue, Converter={StaticResource ConversorDeEstados}}"/>
+    </Canvas>
+</Window>

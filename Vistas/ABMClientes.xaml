@@ -1,0 +1,80 @@
+﻿<Window x:Class="Vistas.ABMClientes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        Title="ABMClientes" Height="543" Width="844" Loaded="Window_Loaded">
+    <!-- -->
+    <Window.Resources>
+        <ObjectDataProvider 
+            ObjectType="{x:Type svc:TrabajarClientes}" 
+            MethodName="TraerClientes" 
+            x:Key="list_clientes">
+
+        </ObjectDataProvider>
+        <CollectionViewSource 
+            x:Key="VISTA_USER" 
+            Source="{StaticResource ResourceKey=list_clientes}"
+            >
+            <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription PropertyName="Apellido" Direction="Ascending"></componentModel:SortDescription>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+
+        <Style TargetType="{x:Type Canvas}" BasedOn="{StaticResource plantilla_canvas}" >
+        </Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource plantilla_cajasTexto}" >
+        </Style>
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource plantilla_label}" >
+        </Style>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource plantilla_button}" >
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Vistas;component/Images/bg1.png"/>
+        </Grid.Background>
+        <Canvas Height="352" HorizontalAlignment="Left" Margin="51,64,0,0" Name="canvas1" VerticalAlignment="Top" Width="318">
+            <Label Canvas.Left="122" Canvas.Top="6" Content="DNI" Height="28" Name="label2" />
+            <Label Canvas.Left="122" Canvas.Top="71" Content="Apellido" Height="28" Name="label3" />
+            <Label Canvas.Left="122" Canvas.Top="140" Content="Nombre" Height="28" Name="label4" />
+            <Label Canvas.Left="122" Canvas.Top="213" Content="Dirección" Height="28" Name="label5" />
+            <TextBox Canvas.Left="122" Canvas.Top="40" Height="23" Name="txtDni" Width="167" IsReadOnly="True" />
+            <TextBox Canvas.Left="122" Canvas.Top="105" Height="23" Name="txtApellido" Width="167" IsReadOnly="True" />
+            <TextBox Canvas.Left="122" Canvas.Top="174" Height="23" Name="txtNombre" Width="167" IsReadOnly="True" />
+            <TextBox Canvas.Left="122" Canvas.Top="247" Height="23" Name="txtDireccion" Width="167" IsReadOnly="True" />
+            <Button Canvas.Left="14" Canvas.Top="40" Content="Nuevo" Height="23" Name="btnNuevo" Width="75" Click="btnNuevo_Click" />
+            <Button Canvas.Left="14" Canvas.Top="86" Content="Modificar" Height="23" Name="btnModificar" Width="75" Click="btnModificar_Click" />
+            <Button Canvas.Left="14" Canvas.Top="131" Content="Eliminar" Height="23" Name="btnEliminar" Width="75" Click="btnEliminar_Click" />
+            <Button Canvas.Left="123" Canvas.Top="303" Content="Guardar" Height="23" Name="btnGuardar" Width="75" Click="btnGuardar_Click" IsEnabled="False" />
+            <Button Canvas.Left="214" Canvas.Top="303" Content="Cancelar" Height="23" Name="btnCancelar" Width="75" Click="btnCancelar_Click" IsEnabled="False" />
+            <Image Canvas.Left="14" Canvas.Top="176" Height="150" Name="image1" Stretch="Fill" Width="75" Source="/Vistas;component/Images/wd.jpg" />
+            <Label Canvas.Left="14" Canvas.Top="6" Content="ABM" Height="28" Name="label8" />
+        </Canvas>
+        <Label Content="Clientes" Height="28" HorizontalAlignment="Left" Margin="51,12,0,0" Name="label1" VerticalAlignment="Top" />
+        <Canvas Height="352" HorizontalAlignment="Left" Margin="384,64,0,0" Name="canvas2" VerticalAlignment="Top" Width="393">
+            <Button Canvas.Left="20" Canvas.Top="303" Content="&lt;&lt;" Height="23" Name="btnPrimero" Width="75" Click="btnPrimero_Click" />
+            <Button Canvas.Left="110" Canvas.Top="303" Content="&lt;" Height="23" Name="btnAnterior" Width="75" Click="btnAnterior_Click" />
+            <Button Canvas.Left="204" Canvas.Top="303" Content="&gt;" Height="23" Name="btnSiguiente" Width="75" Click="btnSiguiente_Click" />
+            <Button Canvas.Left="296" Canvas.Top="303" Content="&gt;&gt;" Height="23" Name="btnUltimo" Width="75" Click="btnUltimo_Click" />
+
+            <Grid Canvas.Left="14" Canvas.Top="87" Width="357" Height="197">
+                <ListView  Name="grdClientes" ItemsSource="{Binding Source={StaticResource VISTA_USER}}" Height="196" Margin="0,-6,0,6" SelectionMode="Single" IsSynchronizedWithCurrentItem="True" SelectedIndex="-1" DataContext="{Binding Source={StaticResource list_clientes}}" SelectionChanged="grdClientes_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="70" Header="DNI" DisplayMemberBinding="{Binding Path=Dni}" ></GridViewColumn>
+                            <GridViewColumn Width="83" Header="Apellido" DisplayMemberBinding="{Binding Path=Apellido}" ></GridViewColumn>
+                            <GridViewColumn Width="83" Header="Nombre" DisplayMemberBinding="{Binding Path=Nombre}" ></GridViewColumn>
+                            <GridViewColumn Width="111" Header="Direccion" DisplayMemberBinding="{Binding Path=Direccion}" ></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <Label Content="Filtrar por apellido:" FontSize="15" Height="28" Name="label6" Canvas.Left="14" Canvas.Top="52" />
+            <TextBox Height="23" Name="txtFiltro" Width="224" Canvas.Left="147" Canvas.Top="51" TextChanged="txtFiltro_TextChanged" />
+            <Label Canvas.Left="14" Canvas.Top="6" Content="Listado de Clientes" Height="28" Name="label7" />
+            <Button Canvas.Left="296" Canvas.Top="11" Content="Consultas" Height="23" Name="btnConsultas" Width="75" Click="btnConsultas_Click" />
+        </Canvas>
+        <Button Content="Salir" Height="23" HorizontalAlignment="Right" Margin="0,450,45,0" Name="btnSalir" VerticalAlignment="Top" Width="75" Click="btnSalir_Click" />
+    </Grid>
+</Window>

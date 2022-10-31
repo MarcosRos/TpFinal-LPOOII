@@ -1,0 +1,119 @@
+﻿<Window x:Class="Vistas.ABMProductos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
+        Title="ABMProducto" Height="537" Width="856" Loaded="Window_Loaded">
+    <Window.Resources>
+        <!--<ObjectDataProvider ObjectType="{x:Type svc:TrabajarProducto}" MethodName="TraerProductos"
+            x:Key="list_productos">
+        </ObjectDataProvider>_-->
+
+        <ObjectDataProvider ObjectType="{x:Type svc:TrabajarProducto}" MethodName="TraerProductos" x:Key="list_productos"></ObjectDataProvider>
+
+        <ObjectDataProvider ObjectType="{x:Type svc:TrabajarProducto}" MethodName="TraerProducto" x:Key="data_producto"></ObjectDataProvider>
+
+        <!-- Validaciones a las cajas de texto-->
+        <ControlTemplate x:Key="TextBoxErrorTemplate">
+            <DockPanel>
+                <Ellipse DockPanel.Dock="Right" Margin="2,0" Width="10" Height="10">
+                    <Ellipse.Fill>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#11FF1111" Offset="0"/>
+                            <GradientStop Color="#FFFF0000" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <AdornedElementPlaceholder></AdornedElementPlaceholder>
+            </DockPanel>
+        </ControlTemplate>
+        <!-- Fin de las Validaciones a las cajas de texto-->
+
+        <Style TargetType="{x:Type Canvas}" BasedOn="{StaticResource plantilla_canvas}" >
+        </Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource plantilla_cajasTexto}" >
+            <!-- Validaciones a las cajas de texto-->
+            <Setter Property="Validation.ErrorTemplate" Value="{StaticResource TextBoxErrorTemplate}"/>
+            <Setter Property="DataContext" Value="{StaticResource data_producto}"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip">
+                        <Setter.Value>
+                            <Binding Path="(Validation.Errors)[0].ErrorContent" RelativeSource="{x:Static RelativeSource.Self}"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                
+            </Style.Triggers>
+            <!-- Fin de las Validaciones a las cajas de texto-->
+        </Style>
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource plantilla_label}" >
+        </Style>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource plantilla_button}" >
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Vistas;component/Images/bg1.png" />
+        </Grid.Background>
+        <Canvas Height="383" HorizontalAlignment="Left" Margin="50,56,0,0" Name="canvas1" VerticalAlignment="Top" Width="320">
+            <Label Canvas.Left="118" Canvas.Top="22" Content="Codigo" Height="28" Name="label2" />
+            <Label Canvas.Left="118" Canvas.Top="85" Content="Categoría" Height="28" Name="label3" />
+            <Label Canvas.Left="118" Canvas.Top="147" Content="Color" Height="28" Name="label4" />
+            <Label Canvas.Left="118" Canvas.Top="210" Content="Descripción" Height="28" Name="label5" />
+            <Label Canvas.Left="118" Canvas.Top="272" Content="Precio" Height="28" Name="label6" />
+            <TextBox Canvas.Left="118" Canvas.Top="56" Height="23" Name="txtCodigo" Width="175" IsReadOnly="True">
+                <TextBox.Text>
+                    <Binding Path="CodProducto" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Canvas.Left="118" Canvas.Top="119" Height="23" Name="txtCategoria" Width="175" IsReadOnly="True">
+                <TextBox.Text>
+                    <Binding Path="Categoria" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Canvas.Left="118" Canvas.Top="181" Height="23" Name="txtColor" Width="175" IsReadOnly="True">
+                <TextBox.Text>
+                    <Binding Path="Color" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Canvas.Left="118" Canvas.Top="243" Height="23" Name="txtDescripcion" Width="175" IsReadOnly="True">
+                <TextBox.Text>
+                    <Binding Path="Descripcion" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Canvas.Left="118" Canvas.Top="307" Height="23" Name="txtPrecio" Width="175" IsReadOnly="True">
+                <TextBox.Text>
+                    <Binding Path="Precio" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+                </TextBox.Text>
+            </TextBox>
+            <Button Canvas.Left="21" Canvas.Top="26" Content="Nuevo" Height="23" Name="btnNuevo" Width="75" Click="btnNuevo_Click" />
+            <Button Canvas.Left="21" Canvas.Top="70" Content="Modificar" Height="23" Name="btnModificar" Width="75" Click="btnModificar_Click" IsEnabled="False" />
+            <Button Canvas.Left="21" Canvas.Top="119" Content="Eliminar" Height="23" Name="btnEliminar" Width="75" Click="btnEliminar_Click" IsEnabled="False" />
+            <Button Canvas.Left="118" Canvas.Top="347" Content="Guardar" Height="23" Name="btnGuardar" Width="75" Click="btnGuardar_Click" IsEnabled="False" />
+            <Button Canvas.Left="218" Canvas.Top="347" Content="Cancelar" Height="23" Name="btnCancelar" Width="75" Click="btnCancelar_Click" IsEnabled="False" />
+            <Image Canvas.Left="21" Canvas.Top="220" Height="150" Name="image1" Stretch="Fill" Width="75" Source="/Vistas;component/Images/lamp.jpg" />
+        </Canvas>
+        <Canvas Height="383" HorizontalAlignment="Left" Margin="387,56,0,0" Name="canvas2" VerticalAlignment="Top" Width="400">
+            <Button Canvas.Left="27" Canvas.Top="27" Content="Primero" Height="23" Name="btnPrimero" Width="75" />
+            <Button Canvas.Left="108" Canvas.Top="27" Content="Anterior" Height="23" Name="btnAnterior" Width="75" />
+            <Button Canvas.Left="189" Canvas.Top="27" Content="Siguiente" Height="23" Name="btnSiguiente" Width="75" />
+            <Button Canvas.Left="270" Canvas.Top="27" Content="Último" Height="23" Name="btnUltimo" Width="75" />
+            <Grid Canvas.Left="27" Canvas.Top="70" Width="351"><!--Name="grd"-->
+                <ListView  Name="grdProductos" ItemsSource="{Binding Source={StaticResource list_productos}}" Height="196" Margin="-6,-6,0,6" SelectionMode="Single" SelectionChanged="grdProductos_SelectionChanged" IsSynchronizedWithCurrentItem="True" SelectedIndex="-1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="50" Header="Codigo" DisplayMemberBinding="{Binding Path=Codigo}" ></GridViewColumn>
+                            <GridViewColumn Width="80" Header="Categoria" DisplayMemberBinding="{Binding Path=Categoria}" ></GridViewColumn>
+                            <GridViewColumn Width="60" Header="Color" DisplayMemberBinding="{Binding Path=Color}" ></GridViewColumn>
+                            <GridViewColumn Width="80" Header="Descripcion" DisplayMemberBinding="{Binding Path=Descripcion}" ></GridViewColumn>
+                            <GridViewColumn Width="60" Header="Precio" DisplayMemberBinding="{Binding Path=Precio}" ></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Canvas>
+        <Label Content="Productos" Height="28" HorizontalAlignment="Left" Margin="39,12,0,0" Name="label1" VerticalAlignment="Top" />
+        <Button Content="Salir" Height="23" HorizontalAlignment="Left" Margin="712,454,0,0" Name="btnSalir" VerticalAlignment="Top" Width="75" Click="btnSalir_Click" />
+    </Grid>
+</Window>

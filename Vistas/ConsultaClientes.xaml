@@ -1,0 +1,70 @@
+﻿<Window x:Class="Vistas.ConsultaClientes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
+        xmlns:source="clr-namespace:Vistas"
+        Title="ConsultaClientes" Height="508" Width="748">
+    <Window.Resources>
+        <Style TargetType="{x:Type Canvas}" BasedOn="{StaticResource plantilla_canvas}" >
+        </Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource plantilla_cajasTexto}" >
+        </Style>
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource plantilla_label}" >
+        </Style>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource plantilla_button}" >
+        </Style>
+
+        <ObjectDataProvider 
+            ObjectType="{x:Type svc:TrabajarClientes}" 
+            MethodName="TraerClientes" 
+            x:Key="list_clientes">
+        </ObjectDataProvider>
+
+        
+        <CollectionViewSource 
+            x:Key="VISTA_USER" 
+            Source="{StaticResource ResourceKey=list_clientes}"
+            Filter="eventVistaCliente_Filter"
+            >
+            <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription PropertyName="Apellido" Direction="Ascending"></componentModel:SortDescription>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+        
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Vistas;component/Images/cons.jpg"/>
+        </Grid.Background>
+        <Canvas Height="100" HorizontalAlignment="Left" Margin="40,39,0,0" Name="canvas1" VerticalAlignment="Top" Width="482">
+            <Label Canvas.Left="41" Canvas.Top="51" Content="Filtrar por apellido:" FontSize="15" Height="28" Name="label6" />
+            <TextBox Canvas.Left="174" Canvas.Top="50" Height="23" Name="txtFiltro" Width="224" TextChanged="txtFiltro_TextChanged" />
+            <Label Canvas.Left="26" Canvas.Top="16" Content="Buscar Cliente" Height="28" Name="label1" />
+        </Canvas>
+        <Canvas Height="256" HorizontalAlignment="Left" Margin="40,162,0,0" Name="canvas2" VerticalAlignment="Top" Width="482">
+            <FlowDocumentReader Height="250" Width="450" Foreground="AntiqueWhite" Canvas.Left="6" Canvas.Top="7">
+                <FlowDocument Name="DocClientes">
+                    <BlockUIContainer>
+                        <ListView Name="grdClientes" ItemsSource="{Binding Source={StaticResource VISTA_USER}}" Height="196" SelectionMode="Single" IsSynchronizedWithCurrentItem="True" SelectedIndex="-1" DataContext="{Binding Source={StaticResource list_clientes}}" Canvas.Left="20" Canvas.Top="42">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="70" Header="DNI" DisplayMemberBinding="{Binding Path=Dni}"></GridViewColumn>
+                                    <GridViewColumn Width="83" Header="Apellido" DisplayMemberBinding="{Binding Path=Apellido}"></GridViewColumn>
+                                    <GridViewColumn Width="83" Header="Nombre" DisplayMemberBinding="{Binding Path=Nombre}"></GridViewColumn>
+                                    <GridViewColumn Width="111" Header="Direccion" DisplayMemberBinding="{Binding Path=Direccion}"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </BlockUIContainer>
+                </FlowDocument>
+            </FlowDocumentReader>
+        </Canvas>
+        <Canvas Height="380" HorizontalAlignment="Left" Margin="528,39,0,0" Name="canvas3" VerticalAlignment="Top" Width="177">
+            <Button Canvas.Left="6" Canvas.Top="338" Content="Vista Previa" Height="23" Name="btnVistaPrevia" Width="75" Click="btnVistaPrevia_Click" />
+            <Button Canvas.Left="96" Canvas.Top="338" Content="Imprimir" Height="23" Name="btnImprimir" Width="75" Click="btnImprimir_Click" />
+            <Label Canvas.Left="15" Canvas.Top="16" Content="Filtros" Height="28" Name="label2" />
+        </Canvas>
+        <Button Content="Salir" Height="23" HorizontalAlignment="Left" Margin="630,434,0,0" Name="btnSalir" VerticalAlignment="Top" Width="75" Click="btnSalir_Click" />
+    </Grid>
+</Window>

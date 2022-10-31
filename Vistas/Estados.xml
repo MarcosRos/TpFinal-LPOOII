@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estados>
+  <estado Name="PENDIENTE"/>
+  <estado Name="PAGADA"/>
+  <estado Name="CONTABILIZADA"/>
+  <estado Name="ANULADA"/>
+</estados>
+

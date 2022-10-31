@@ -1,0 +1,14 @@
+﻿<Window x:Class="Vistas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:UserControl="clr-namespace:Vistas"
+        Title="MainWindow" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="363" Width="597" Foreground="Black" OpacityMask="{x:Null}">
+    
+    <Grid Width="586" Height="325">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Vistas;component/Images/login.jpg" Stretch="Fill" TileMode="None" />
+        </Grid.Background>
+        <UserControl:LoginUserControl Margin="288,12,24,12" >
+        </UserControl:LoginUserControl>
+        </Grid>
+</Window>

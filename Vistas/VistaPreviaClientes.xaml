@@ -1,0 +1,49 @@
+﻿<Window x:Class="Vistas.VistaPreviaClientes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
+        xmlns:source="clr-namespace:Vistas"
+        Title="VistaPreviaClientes" Height="476" Width="552">
+    <Window.Resources>
+
+        <ObjectDataProvider 
+            ObjectType="{x:Type svc:TrabajarClientes}" 
+            MethodName="TraerClientes" 
+            x:Key="list_clientes">
+        </ObjectDataProvider>
+
+
+        <CollectionViewSource 
+            x:Key="VISTA_USER" 
+            Source="{StaticResource ResourceKey=list_clientes}"
+            Filter="eventVistaCliente_Filter"
+            >
+            <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription PropertyName="Apellido" Direction="Ascending"></componentModel:SortDescription>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+
+    </Window.Resources>
+    <Grid>
+        <TextBox Canvas.Left="159" Canvas.Top="28" Height="23" Name="txtFiltro" Width="224" TextChanged="txtFiltro_TextChanged" />
+        <FlowDocumentReader Width="450"  Canvas.Left="6" Canvas.Top="7" Margin="39,53,41,120">
+            <FlowDocument Name="DocClientes">
+                <BlockUIContainer>
+                    <ListView Name="grdClientes" ItemsSource="{Binding Source={StaticResource VISTA_USER}}" Height="196" SelectionMode="Single" IsSynchronizedWithCurrentItem="True" SelectedIndex="-1" DataContext="{Binding Source={StaticResource list_clientes}}" Canvas.Left="20" Canvas.Top="42">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="70" Header="DNI" DisplayMemberBinding="{Binding Path=Dni}"></GridViewColumn>
+                                <GridViewColumn Width="83" Header="Apellido" DisplayMemberBinding="{Binding Path=Apellido}"></GridViewColumn>
+                                <GridViewColumn Width="83" Header="Nombre" DisplayMemberBinding="{Binding Path=Nombre}"></GridViewColumn>
+                                <GridViewColumn Width="111" Header="Direccion" DisplayMemberBinding="{Binding Path=Direccion}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </BlockUIContainer>
+            </FlowDocument>
+        </FlowDocumentReader>
+        <Button Content="Imprimir" Height="23" HorizontalAlignment="Left" Margin="394,35,0,0" Name="btnImprimir" VerticalAlignment="Top" Width="75" Click="btnImprimir_Click" />
+        <Button Content="Salir" Height="23" HorizontalAlignment="Left" Margin="394,369,0,0" Name="btnSalir" VerticalAlignment="Top" Width="75" />
+    </Grid>
+</Window>
