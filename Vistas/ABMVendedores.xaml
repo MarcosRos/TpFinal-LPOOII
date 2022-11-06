@@ -2,10 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
-        Title="ABMVendedores" Height="475" Width="855" Loaded="Window_Loaded">
+        Title="ABMVendedores" Height="539" Width="855" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <ObjectDataProvider ObjectType="{x:Type svc:TrabajarVendedores}" MethodName="TraerVendedores" x:Key="list_vendedores"></ObjectDataProvider>
         <ObjectDataProvider ObjectType="{x:Type svc:TrabajarVendedores}" MethodName="TraerVendedor" x:Key="data_vendedores"></ObjectDataProvider>
+        <ObjectDataProvider ObjectType="{x:Type svc:TrabajarVendedores}" MethodName="TraerVendedores" x:Key="list_vendedores"></ObjectDataProvider>
 
         <!-- Validaciones a las cajas de texto-->
         <ControlTemplate x:Key="TextBoxErrorTemplate">
@@ -28,7 +28,7 @@
         <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource plantilla_cajasTexto}" >
             <!-- Validaciones a las cajas de texto-->
             <Setter Property="Validation.ErrorTemplate" Value="{StaticResource TextBoxErrorTemplate}"/>
-            <Setter Property="DataContext" Value="{StaticResource data_producto}"/>
+            <Setter Property="DataContext" Value="{StaticResource data_vendedores}"/>
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
                     <Setter Property="ToolTip">
@@ -69,46 +69,58 @@
            
         </Style>-->
     </Window.Resources>
-    <Grid>
+    <Grid Height="509">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="354*" />
+            <ColumnDefinition Width="479*" />
+        </Grid.ColumnDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="/Vistas;component/Images/bg1.png" />
         </Grid.Background>
-        <Canvas Height="303" HorizontalAlignment="Left" Margin="49,54,0,0" Name="canvas1" VerticalAlignment="Top" Width="310">
-            <Label Canvas.Left="120" Canvas.Top="22" Content="Legajo" Height="28" Name="label2" />
-            <Label Canvas.Left="120" Canvas.Top="85" Content="Apellido" Height="28" Name="label3" />
-            <Label Canvas.Left="120" Canvas.Top="148" Content="Nombre" Height="28" Name="label4" />
-            <TextBox Canvas.Left="120" Canvas.Top="56" Height="23" Name="txtLegajo" Width="170" IsReadOnly="True">
+        <Canvas Height="438" HorizontalAlignment="Left" Margin="49,54,0,0" Name="canvas1" VerticalAlignment="Top" Width="310" Grid.ColumnSpan="2">
+            <Label Canvas.Left="120" Canvas.Top="15" Content="Legajo" Height="28" Name="label2" />
+            <Label Canvas.Left="120" Canvas.Top="77" Content="Apellido" Height="28" Name="label3" />
+            <Label Canvas.Left="120" Canvas.Top="139" Content="Nombre" Height="28" Name="label4" />
+            <Label Canvas.Left="120" Canvas.Top="201" Content="Usuario" Height="28" Name="label5" />
+            <Label Canvas.Left="120" Canvas.Top="263" Content="Contraseña" Height="28" Name="label6" />
+            <Label Canvas.Left="120" Canvas.Top="325" Content="Rol" Height="28" Name="label7" />
+            <TextBox Canvas.Left="120" Canvas.Top="48" Height="23" Name="txtLegajo" Width="170" IsReadOnly="True">
             <TextBox.Text>
                 <Binding Path="Legajo" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
                 </TextBox.Text>
             </TextBox>
-            <TextBox Canvas.Left="120" Canvas.Top="119" Height="23" Name="txtApellido" Width="170" IsReadOnly="True" />
-            <TextBox Canvas.Left="120" Canvas.Top="182" Height="23" Name="txtNombre" Width="170" IsReadOnly="True" />
+            <TextBox Canvas.Left="120" Canvas.Top="110" Height="23" Name="txtApellido" Width="170" IsReadOnly="True" />
+            <TextBox Canvas.Left="120" Canvas.Top="172" Height="23" Name="txtNombre" Width="170" IsReadOnly="True" />
+            <TextBox Canvas.Left="120" Canvas.Top="234" Height="23" IsReadOnly="True" Name="txtUsuario" Width="170" />
+            <TextBox Canvas.Left="120" Canvas.Top="296" Height="23" IsReadOnly="True" Name="txtPassword" Width="170" />
+            <ComboBox Canvas.Left="120" Canvas.Top="358" Height="23" IsReadOnly="True" Name="cmbRol" Width="170" DataContext="{Binding}" SelectedIndex="-1" Text="" IsEnabled="False" ItemsSource="{Binding}"></ComboBox>
             <Button Canvas.Left="23" Canvas.Top="27" Content="Nuevo" Height="23" Name="btnNuevo" Width="75" Click="btnNuevo_Click" />
             <Button Canvas.Left="23" Canvas.Top="73" Content="Modificar" Height="23" Name="btnModificar" Width="75" Click="btnModificar_Click" />
             <Button Canvas.Left="23" Canvas.Top="119" Content="Eliminar" Height="23" Name="btnEliminar" Width="75" Click="btnEliminar_Click" />
-            <Button Canvas.Left="120" Canvas.Top="252" Content="Guardar" Height="23" Name="btnGuardar" Width="75" Click="btnGuardar_Click" IsEnabled="False" />
-            <Button Canvas.Left="215" Canvas.Top="252" Content="Cancelar" Height="23" Name="btnCancelar" Width="75" Click="btnCancelar_Click" IsEnabled="False" />
-            <Image Canvas.Left="15" Canvas.Top="173" Height="102" Name="image1" Stretch="Fill" Width="92" Source="/Vistas;component/Images/wd2.jpg" />
+            <Button Canvas.Left="120" Canvas.Top="400" Content="Guardar" Height="23" Name="btnGuardar" Width="75" Click="btnGuardar_Click" IsEnabled="False" />
+            <Button Canvas.Left="215" Canvas.Top="400" Content="Cancelar" Height="23" Name="btnCancelar" Width="75" Click="btnCancelar_Click" IsEnabled="False" />
+            <Image Canvas.Left="15" Canvas.Top="221" Height="102" Name="image1" Stretch="Fill" Width="92" Source="/Vistas;component/Images/wd2.jpg" />
         </Canvas>
-        <Canvas Height="302" HorizontalAlignment="Left" Margin="375,55,0,0" Name="canvas2" VerticalAlignment="Top" Width="412">
-            <Button Canvas.Left="18" Canvas.Top="21" Content="Primero" Height="23" Name="btnPrimero" Width="75" />
-            <Button Canvas.Left="110" Canvas.Top="21" Content="Anterior" Height="23" Name="btnAnterior" Width="75" />
-            <Button Canvas.Left="206" Canvas.Top="21" Content="Siguiente" Height="23" Name="btnSiguiente" Width="75" />
-            <Button Canvas.Left="295" Canvas.Top="21" Content="Último" Height="23" Name="btnUltimo" Width="75" />
-            <Grid Canvas.Left="27" Canvas.Top="70" Width="336">
-                <ListView  Name="grdVendedores" ItemsSource="{Binding Source={StaticResource list_vendedores}}" Height="196" Margin="-6,-6,0,6" SelectionMode="Single" SelectionChanged="grdVendedores_SelectionChanged" IsSynchronizedWithCurrentItem="True" SelectedIndex="-1">
+        <Canvas Height="381" HorizontalAlignment="Left" Margin="21,54,0,0" Name="canvas2" VerticalAlignment="Top" Width="412" Grid.Column="1">
+            <Button Canvas.Left="18" Canvas.Top="21" Content="Primero" Height="23" Name="btnPrimero" Width="75" Click="btnPrimero_Click" />
+            <Button Canvas.Left="110" Canvas.Top="21" Content="Anterior" Height="23" Name="btnAnterior" Width="75" Click="btnAnterior_Click" />
+            <Button Canvas.Left="206" Canvas.Top="21" Content="Siguiente" Height="23" Name="btnSiguiente" Width="75" Click="btnSiguiente_Click" />
+            <Button Canvas.Left="295" Canvas.Top="21" Content="Último" Height="23" Name="btnUltimo" Width="75" Click="btnUltimo_Click" />
+            <Grid Canvas.Left="16" Canvas.Top="70" Width="390" Height="282">
+                <ListView  Name="grdVendedores" ItemsSource="{Binding Source={StaticResource list_vendedores}}" Margin="-6,-6,0,0" SelectionMode="Single" SelectionChanged="grdVendedores_SelectionChanged" IsSynchronizedWithCurrentItem="True" SelectedIndex="-1">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Width="70" Header="Legajo" DisplayMemberBinding="{Binding Path=Legajo}" ></GridViewColumn>
-                            <GridViewColumn Width="130" Header="Apellido" DisplayMemberBinding="{Binding Path=Apellido}" ></GridViewColumn>
-                            <GridViewColumn Width="130" Header="Nombre" DisplayMemberBinding="{Binding Path=Nombre}" ></GridViewColumn>
+                            <GridViewColumn Width="45" Header="Legajo" DisplayMemberBinding="{Binding Path=Legajo}" ></GridViewColumn>
+                            <GridViewColumn Width="85" Header="Apellido" DisplayMemberBinding="{Binding Path=Apellido}" ></GridViewColumn>
+                            <GridViewColumn Width="85" Header="Nombre" DisplayMemberBinding="{Binding Path=Nombre}" ></GridViewColumn>
+                            <GridViewColumn Width="82" Header="Usuario" DisplayMemberBinding="{Binding Path=Usuario}" ></GridViewColumn>
+                            <GridViewColumn Width="89" Header="Rol" DisplayMemberBinding="{Binding Path=Rol}" ></GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </Grid>
         </Canvas>
         <Label Content="Vendedores" Height="28" HorizontalAlignment="Left" Margin="49,20,0,0" Name="label1" VerticalAlignment="Top" />
-        <Button Content="Salir" Height="23" HorizontalAlignment="Left" Margin="712,390,0,0" Name="btnSalir" VerticalAlignment="Top" Width="75" Click="btnSalir_Click" />
+        <Button Content="Salir" Height="23" HorizontalAlignment="Right" Margin="0,454,46,0" Name="btnSalir" VerticalAlignment="Top" Width="75" Click="btnSalir_Click" Grid.Column="1" />
     </Grid>
 </Window>

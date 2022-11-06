@@ -60,37 +60,6 @@ namespace Vistas
                 txtCodProducto.Text = codigo;
                 txtPrecio.Text = precio;
             }
-            /*
-            if (grdProductos.SelectedIndex != -1)
-            {
-                int indice = grdProductos.SelectedIndex;
-                DataTable dt = TrabajarProducto.TraerProductos();
-                string st = dt.Rows[indice]["Codigo"].ToString();
-                txtCodigo.Text = st;
-                txtCategoria.IsEnabled = true;
-                txtColor.IsEnabled = true;
-                txtDescripcion.IsEnabled = true;
-                txtPrecio.IsEnabled = true;
-                txtCodigo.IsEnabled = false;
-
-                btnGuardar.IsEnabled = false;
-                btnModificar.IsEnabled = true;
-                btnCancelar.IsEnabled = true;
-                btnEliminar.IsEnabled = true;
-
-                txtCategoria.IsReadOnly = false;
-                txtColor.IsReadOnly = false;
-                txtDescripcion.IsReadOnly = false;
-                txtPrecio.IsReadOnly = false;
-            }
-            else
-            {
-                //txtCodigo.IsEnabled = true;
-                txtCodigo.Text = "";
-                btnModificar.IsEnabled = false;
-                btnEliminar.IsEnabled = false;
-            }
-             * */
         }
 
         private void txtCantidad_TextChanged(object sender, TextChangedEventArgs e)
@@ -132,7 +101,7 @@ namespace Vistas
             oProducto.Descripcion = dt.Rows[indice]["Descripcion"].ToString();
             oProducto.Precio = Decimal.Parse(dt.Rows[indice]["Precio"].ToString());
             
-
+            //Para optimizar el resto
             Cliente oCliente = grdClientes.SelectedItem as Cliente;
             Vendedor oVendedor = grdVendedores.SelectedItem as Vendedor;
             ComprobanteVenta oFactura = new ComprobanteVenta(oVenta,oCliente,oVendedor,oProducto);

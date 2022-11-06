@@ -56,6 +56,7 @@
     </Compile>
     <Compile Include="Proveedor.cs" />
     <Compile Include="TrabajarClientes.cs" />
+    <Compile Include="TrabajarProveedores.cs" />
     <Compile Include="TrabajarVendedores.cs" />
     <Compile Include="TrabajarProducto.cs" />
     <Compile Include="TrabajarVenta.cs" />

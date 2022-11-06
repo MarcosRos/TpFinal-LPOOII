@@ -14,7 +14,7 @@ namespace ClasesBase
 
         }
 
-        public string Cuit { get { return cuit; } set { cuit = value; } }
+        public string CUIT { get { return cuit; } set { cuit = value; } }
         public string RazonSocial { get { return razonSocial; } set { razonSocial = value; } }
         public string Domicilio { get { return domicilio; } set { domicilio = value; } }
         public string Telefono { get { return telefono; } set { telefono = value; } }

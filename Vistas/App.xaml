@@ -1,11 +1,12 @@
 ﻿<Application x:Class="Vistas.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="Login.xaml">
+             StartupUri="Presentacion.xaml">
     <!--ListaDeEstados.xaml -->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                
                 <ResourceDictionary Source="/LibreriaRecursos;component/StyleDictionary.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/LibreriaRecursos;component/TemplateDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

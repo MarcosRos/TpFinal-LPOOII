@@ -4,7 +4,7 @@
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
         xmlns:source="clr-namespace:Vistas"
-        Title="ConsultaClientes" Height="508" Width="748">
+        Title="ConsultaClientes" Height="508" Width="772" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="{x:Type Canvas}" BasedOn="{StaticResource plantilla_canvas}" >
         </Style>
@@ -60,8 +60,8 @@
                 </FlowDocument>
             </FlowDocumentReader>
         </Canvas>
-        <Canvas Height="380" HorizontalAlignment="Left" Margin="528,39,0,0" Name="canvas3" VerticalAlignment="Top" Width="177">
-            <Button Canvas.Left="6" Canvas.Top="338" Content="Vista Previa" Height="23" Name="btnVistaPrevia" Width="75" Click="btnVistaPrevia_Click" />
+        <Canvas Height="380" HorizontalAlignment="Left" Margin="534,39,0,0" Name="canvas3" VerticalAlignment="Top" Width="177">
+            <Button ToolTip="Obtiene una vista previa a la impresión del listado" Canvas.Left="6" Canvas.Top="338" Content="Vista Previa" Height="23" Name="btnVistaPrevia" Width="75" Click="btnVistaPrevia_Click" />
             <Button Canvas.Left="96" Canvas.Top="338" Content="Imprimir" Height="23" Name="btnImprimir" Width="75" Click="btnImprimir_Click" />
             <Label Canvas.Left="15" Canvas.Top="16" Content="Filtros" Height="28" Name="label2" />
         </Canvas>

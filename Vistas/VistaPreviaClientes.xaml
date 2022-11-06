@@ -4,7 +4,7 @@
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
         xmlns:source="clr-namespace:Vistas"
-        Title="VistaPreviaClientes" Height="476" Width="552">
+        Title="VistaPreviaClientes" Height="476" Width="552" WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
         <ObjectDataProvider 

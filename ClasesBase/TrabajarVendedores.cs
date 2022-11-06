@@ -30,6 +30,18 @@ namespace ClasesBase
             return dt;
         }
 
+        public static int ContarAdmins()
+        {
+            cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_vend_contar_admins";
+            cmd.Connection = cnn;
+            cnn.Open();
+
+            int num=(int)cmd.ExecuteScalar();
+            cnn.Close();
+            return num;
+        }
 
         public static ObservableCollection<Vendedor> TraerVendedoresCollection()
         {
@@ -51,6 +63,8 @@ namespace ClasesBase
                 oVendedor.Apellido = row["Apellido"].ToString();
                 oVendedor.Legajo = row["Legajo"].ToString();
                 oVendedor.Nombre = row["Nombre"].ToString();
+                oVendedor.Usuario = row["Usuario"].ToString();
+                oVendedor.Usuario = row["Rol"].ToString();
                 vend.Add(oVendedor);
             }
             return vend;
@@ -63,6 +77,9 @@ namespace ClasesBase
             oVendedor.Apellido = "";
             oVendedor.Legajo = "";
             oVendedor.Nombre = "";
+            oVendedor.Usuario = "";
+            oVendedor.Password = "";
+            oVendedor.Rol = "";
             return oVendedor;
         }
         
@@ -75,8 +92,11 @@ namespace ClasesBase
 
             //cmd.Parameters.AddWithValue("@legajo",vendedor.Legajo);  Depende de si funciona lo de Clave Primaria
             cmd.Parameters.AddWithValue("@Legajo", vendedor.Legajo);
-            cmd.Parameters.AddWithValue("@nombre",vendedor.Nombre);
-            cmd.Parameters.AddWithValue("@apellido",vendedor.Apellido);
+            cmd.Parameters.AddWithValue("@Nombre",vendedor.Nombre);
+            cmd.Parameters.AddWithValue("@Apellido",vendedor.Apellido);
+            cmd.Parameters.AddWithValue("@Usuario", vendedor.Usuario);
+            cmd.Parameters.AddWithValue("@Password", vendedor.Password);
+            cmd.Parameters.AddWithValue("@Rol", vendedor.Rol);
 
             cnn.Open();
             cmd.ExecuteNonQuery();
@@ -107,6 +127,9 @@ namespace ClasesBase
             cmd.Parameters.AddWithValue("@legajo", vendedor.Legajo);
             cmd.Parameters.AddWithValue("@nombre",vendedor.Nombre);
             cmd.Parameters.AddWithValue("@apellido",vendedor.Apellido);
+            cmd.Parameters.AddWithValue("@Usuario", vendedor.Usuario);
+            cmd.Parameters.AddWithValue("@Password", vendedor.Password);
+            cmd.Parameters.AddWithValue("@Rol", vendedor.Rol);
 
             cnn.Open();
             cmd.ExecuteNonQuery();

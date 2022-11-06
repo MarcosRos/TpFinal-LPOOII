@@ -21,14 +21,28 @@ namespace Vistas
     /// </summary>
     public partial class ABMClientes : Window
     {
+
+        CollectionView cv;
+        ObservableCollection<Cliente> listaClientes = new ObservableCollection<Cliente>();
+
+        //MÉTODOS GENÉRICOS
         public ABMClientes()
         {
             InitializeComponent();
         }
 
-        CollectionView cv;
-        ObservableCollection<Cliente> listaClientes = new ObservableCollection<Cliente>();
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
 
+            ObjectDataProvider odp = (ObjectDataProvider)this.Resources["list_clientes"];
+            listaClientes = odp.Data as ObservableCollection<Cliente>;
+            cv = (CollectionView)CollectionViewSource.GetDefaultView(grdClientes.ItemsSource);
+            btnCancelar.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        }
+
+
+
+        //MÉTODOS ABM
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             txtDni.Text = "";
@@ -61,6 +75,8 @@ namespace Vistas
 
         }
 
+
+        //MÉTODOS DE CONFIRMACIÓN-------------------
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             Cliente oCliente = new Cliente();
@@ -99,7 +115,9 @@ namespace Vistas
                 txtNombre.Text = "";
                 btnCancelar.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
 
-                //grdClientes.DataContext = TrabajarClientes.TraerClientes();
+                ObjectDataProvider odp = (ObjectDataProvider)this.Resources["list_clientes"];
+                listaClientes = odp.Data as ObservableCollection<Cliente>;
+                cv = (CollectionView)CollectionViewSource.GetDefaultView(grdClientes.ItemsSource);
                 cv.Filter = null;
             }
         }
@@ -130,15 +148,10 @@ namespace Vistas
             grdClientes.SelectedIndex = -1;
             grdClientes.IsEnabled = true;
 
-           // grdClientes.DataContext = TrabajarClientes.TraerClientes();
+            // grdClientes.DataContext = TrabajarClientes.TraerClientes();
             cv.Filter = null;
         }
-
-        private void btnSalir_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
+        //----------------------
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
@@ -159,8 +172,10 @@ namespace Vistas
                 txtDireccion.Text = "";
                 btnCancelar.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
 
-                //grdClientes.DataContext = TrabajarClientes.TraerClientes();
-                Console.WriteLine( grdClientes.DataContext);
+                ObjectDataProvider odp = (ObjectDataProvider)this.Resources["list_clientes"];
+                listaClientes = odp.Data as ObservableCollection<Cliente>;
+                cv = (CollectionView)CollectionViewSource.GetDefaultView(grdClientes.ItemsSource);
+                
                 cv.Filter = null;
             }
         }
@@ -174,56 +189,22 @@ namespace Vistas
             {
                 TrabajarClientes.EliminarCliente(oCliente);
                 grdClientes.ItemsSource = TrabajarClientes.TraerClientes();
+
                 grdClientes.SelectedIndex = -1;
                 txtDni.Text = "";
                 txtNombre.Text = "";
                 txtApellido.Text = "";
                 txtDireccion.Text = "";
+
+
                 btnCancelar.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-                
-                //grdClientes.DataContext = TrabajarClientes.TraerClientes();
+                ObjectDataProvider odp = (ObjectDataProvider)this.Resources["list_clientes"];
+                listaClientes = odp.Data as ObservableCollection<Cliente>;
+                cv = (CollectionView)CollectionViewSource.GetDefaultView(grdClientes.ItemsSource);
                 cv.Filter = null;
             }
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            ObjectDataProvider odp = (ObjectDataProvider)this.Resources["list_clientes"];
-            listaClientes = odp.Data as ObservableCollection<Cliente>;
-
-            cv = (CollectionView)CollectionViewSource.GetDefaultView(grdClientes.ItemsSource);
-            btnCancelar.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-        }
-
-        private void btnPrimero_Click(object sender, RoutedEventArgs e)
-        {
-            cv.MoveCurrentToFirst();
-        }
-
-        private void btnUltimo_Click(object sender, RoutedEventArgs e)
-        {
-            cv.MoveCurrentToLast();
-        }
-
-        private void btnAnterior_Click(object sender, RoutedEventArgs e)
-        {
-            cv.MoveCurrentToPrevious();
-            if (cv.IsCurrentBeforeFirst)
-            {
-                cv.MoveCurrentToLast();
-            }
-        }
-
-        private void btnSiguiente_Click(object sender, RoutedEventArgs e)
-        {
-            cv.MoveCurrentToNext();
-            if (cv.IsCurrentAfterLast)
-            {
-                cv.MoveCurrentToFirst();
-            }
-        }
-
+        //Seleccionar un registro para modificar o eliminar
         private void grdClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (grdClientes.SelectedIndex != -1)
@@ -253,6 +234,13 @@ namespace Vistas
             }
         }
 
+        //MÉTODOS RELACIONADOS A LA GRILLA
+        private void btnConsultas_Click(object sender, RoutedEventArgs e)
+        {
+            ConsultaClientes oConsultaClientes = new ConsultaClientes();
+            oConsultaClientes.txtFiltro.Text = txtFiltro.Text;
+            oConsultaClientes.Show();
+        }
         private void txtFiltro_TextChanged(object sender, TextChangedEventArgs e)
         {
             //grdClientes.DataContext = TrabajarClientes.TraerClientes();
@@ -284,15 +272,41 @@ namespace Vistas
             return band;
         }
 
-        private void btnConsultas_Click(object sender, RoutedEventArgs e)
+        
+
+
+        private void btnPrimero_Click(object sender, RoutedEventArgs e)
         {
-            ConsultaClientes oConsultaClientes = new ConsultaClientes();
-            oConsultaClientes.txtFiltro.Text = txtFiltro.Text;
-            oConsultaClientes.Show();
+            cv.MoveCurrentToFirst();
         }
 
+        private void btnUltimo_Click(object sender, RoutedEventArgs e)
+        {
+            cv.MoveCurrentToLast();
+        }
 
+        private void btnAnterior_Click(object sender, RoutedEventArgs e)
+        {
+            cv.MoveCurrentToPrevious();
+            if (cv.IsCurrentBeforeFirst)
+            {
+                cv.MoveCurrentToLast();
+            }
+        }
 
+        private void btnSiguiente_Click(object sender, RoutedEventArgs e)
+        {
+            cv.MoveCurrentToNext();
+            if (cv.IsCurrentAfterLast)
+            {
+                cv.MoveCurrentToFirst();
+            }
+        }
+
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
     }
 }

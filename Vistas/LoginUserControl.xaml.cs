@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ClasesBase;
+using System.Data;
 
 namespace Vistas
 {
@@ -23,6 +25,8 @@ namespace Vistas
         {
             InitializeComponent();
         }
+
+        private DataTable dt = new DataTable();
 
         private void textBox1_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -59,36 +63,49 @@ namespace Vistas
         }
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            if(checkBox1.IsChecked == true){
+            if (checkBox1.IsChecked == true)
+            {
                 psbPass.Password = txtPassword.Text;
             }
-            String sUser1 = "Admin";
-            String sPass1 = "Admin";
-            String sUser2 = "Vendedor";
-            String sPass2 = "Vendedor";
 
-            String sUser = txtUsuario.Text;
+            
+            Boolean encontrado = false;
+            string rol = "";
             String sPass = psbPass.Password;
+            foreach (DataRow dr in dt.Rows)
+            {
+                if (dr["Usuario"].ToString() == txtUsuario.Text && dr["Password"].ToString() == sPass)
+                {
+                    encontrado = true;
+                    rol = dr["Rol"].ToString();
+                }
+            }           
 
-            if(sUser == sUser1 && sPass == sPass1){
-                Principal oPrincipal = new Principal();
-                oPrincipal.RolUsuario = sUser1;
-                MessageBox.Show("Bienvenido Administrador");
-                oPrincipal.Show(); 
-                ((this.Parent as Grid).Parent as Window).Close();
-            }
-            else if (sUser == sUser2 && sPass == sPass2)
+            if (encontrado == true)
             {
                 Principal oPrincipal = new Principal();
-                oPrincipal.RolUsuario = sUser2;
+                oPrincipal.RolUsuario = rol;
+                if (rol == "Administrador") 
+                {
+                MessageBox.Show("Bienvenido Administrador");
+                }
+                else
+                {
                 MessageBox.Show("Bienvenido Vendedor");
+                }
+                
                 oPrincipal.Show();
                 ((this.Parent as Grid).Parent as Window).Close();
             }
-            else
+            else 
             {
                 MessageBox.Show("Acceso Denegado. Datos ingresados incorrectos!");
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            dt = TrabajarVendedores.TraerVendedores();
         }
     }
 }

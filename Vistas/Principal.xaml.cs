@@ -28,7 +28,7 @@ namespace Vistas
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //Admin
-            if (this.RolUsuario == "Admin")
+            if (this.RolUsuario == "Administrador")
             {
                 btnProveedores.IsEnabled = true;
                 btnClientes.IsEnabled = true;
@@ -84,6 +84,12 @@ namespace Vistas
         {
             AltaVenta oAltaVenta = new AltaVenta();
             oAltaVenta.Show();
+        }
+
+        private void btnAcercaDe_Click(object sender, RoutedEventArgs e)
+        {
+            AcercaDe oAcercaDe = new AcercaDe();
+            oAcercaDe.Show();
         }
     }
 }

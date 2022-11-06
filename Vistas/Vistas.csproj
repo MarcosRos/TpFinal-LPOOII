@@ -57,11 +57,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AcercaDe.xaml.cs">
+      <DependentUpon>AcercaDe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AltaVenta.xaml.cs">
       <DependentUpon>AltaVenta.xaml</DependentUpon>
     </Compile>
     <Compile Include="ComprobanteVenta.xaml.cs">
       <DependentUpon>ComprobanteVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion.xaml.cs">
+      <DependentUpon>Presentacion.xaml</DependentUpon>
     </Compile>
     <Compile Include="VistaPreviaClientes.xaml.cs">
       <DependentUpon>VistaPreviaClientes.xaml</DependentUpon>
@@ -79,6 +85,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ABMVendedores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AcercaDe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,6 +145,10 @@
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Presentacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Principal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,6 +222,30 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\cons.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\save.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\accept.jpg" />
+    <Resource Include="Images\cancel.jpg" />
+    <Resource Include="Images\client.jpg" />
+    <Resource Include="Images\close.jpg" />
+    <Resource Include="Images\first.jpg" />
+    <Resource Include="Images\garb.jpg" />
+    <Resource Include="Images\info.jpg" />
+    <Resource Include="Images\last.jpg" />
+    <Resource Include="Images\mod.jpg" />
+    <Resource Include="Images\new.jpg" />
+    <Resource Include="Images\next.jpg" />
+    <Resource Include="Images\prev.jpg" />
+    <Resource Include="Images\print.jpg" />
+    <Resource Include="Images\prod.jpg" />
+    <Resource Include="Images\prov.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Media\intro.mp3" />
+    <Content Include="Media\Wildlife.wmv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

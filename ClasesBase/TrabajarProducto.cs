@@ -36,6 +36,7 @@ namespace ClasesBase
             oProducto.Color = "";
             oProducto.Descripcion = "";
             oProducto.Precio = 0;
+            oProducto.Imagen = "";
             return oProducto;
         }
 
@@ -51,6 +52,7 @@ namespace ClasesBase
             cmd.Parameters.AddWithValue("@color", producto.Color);
             cmd.Parameters.AddWithValue("@descripcion", producto.Descripcion);
             cmd.Parameters.AddWithValue("@precio", producto.Precio);
+            cmd.Parameters.AddWithValue("@imagen", producto.Imagen);
 
             cnn.Open();
             cmd.ExecuteNonQuery();
@@ -83,6 +85,7 @@ namespace ClasesBase
             cmd.Parameters.AddWithValue("@Color", producto.Color);
             cmd.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
             cmd.Parameters.AddWithValue("@Precio", producto.Precio);
+            cmd.Parameters.AddWithValue("@Imagen", producto.Imagen);
 
             cnn.Open();
             cmd.ExecuteNonQuery();

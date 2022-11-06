@@ -8,7 +8,8 @@ namespace ClasesBase
 {
     public class Producto : IDataErrorInfo
     {
-        private string codigo, categoria, color, descripcion;
+        private string codigo, categoria, color, descripcion,imagen;
+        
         private decimal precio;
 
         public Producto()
@@ -16,6 +17,7 @@ namespace ClasesBase
 
         }
 
+        public string Imagen { get { return imagen; } set { imagen = value; }}
         public string Codigo { get { return codigo; } set { codigo = value; } }
         public string Categoria { get { return categoria; } set { categoria = value; } }
         public string Color { get { return color; } set { color = value; } }
@@ -24,7 +26,7 @@ namespace ClasesBase
 
         public override string ToString()
         {
-            string msg = "Codigo: " + codigo + "\nCategoria: " + categoria + "\nColor: " + color + "\nDescripcion: " + descripcion + "\nPrecio: " + precio;
+            string msg = "Codigo: " + codigo + "\nCategoria: " + categoria + "\nColor: " + color + "\nDescripcion: " + descripcion + "\nPrecio: " + precio + "\nImagen: " + imagen;
             return msg;
         }
 
@@ -54,6 +56,9 @@ namespace ClasesBase
                         break;
                     case "Precio":
                         msgError = validarPrecio();
+                        break;
+                    case "Imagen":
+                        msgError = validarImagen();
                         break;
                 }
                 return msgError;
@@ -120,5 +125,14 @@ namespace ClasesBase
             }
             return null;
         }
+        private string validarImagen()
+        {
+            if (String.IsNullOrEmpty(imagen))
+            {
+                return "El valor del campo es obligatorio";
+            }
+            return null;
+        }
+
     }
 }
