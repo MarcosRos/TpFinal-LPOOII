@@ -27,7 +27,7 @@ namespace Vistas
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             meAudio.LoadedBehavior = MediaState.Manual;
-            meAudio.Source = new Uri("C:/Users/marco/Desktop/LPOO_2022-main/LPOO_2022-main/Vistas/Media/intro.mp3", UriKind.Relative);//"./Media/intro.mp3"
+            meAudio.Source = new Uri("C:/Users/Lucas/Desktop/LPOO/LPOO2/TpFinal-LPOOII/Vistas/Media/intro.mp3", UriKind.Relative);//"./Media/intro.mp3"
             meAudio.Play();
         }
 

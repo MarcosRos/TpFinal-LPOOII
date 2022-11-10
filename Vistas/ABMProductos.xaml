@@ -42,7 +42,6 @@
                         </Setter.Value>
                     </Setter>
                 </Trigger>
-                
             </Style.Triggers>
             <!-- Fin de las Validaciones a las cajas de texto-->
         </Style>
@@ -64,7 +63,7 @@
             <Label Canvas.Left="118" Canvas.Top="272" Content="Precio" Height="28" Name="label6" />
             <TextBox Canvas.Left="118" Canvas.Top="56" Height="23" Name="txtCodigo" Width="175" IsReadOnly="True">
                 <TextBox.Text>
-                    <Binding Path="CodProducto" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+                    <Binding Path="Codigo" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
                 </TextBox.Text>
             </TextBox>
             <TextBox Canvas.Left="118" Canvas.Top="119" Height="23" Name="txtCategoria" Width="175" IsReadOnly="True">
@@ -90,13 +89,28 @@
             <Button Canvas.Left="21" Canvas.Top="58" Content="Nuevo" Height="23" Name="btnNuevo" Width="75" Click="btnNuevo_Click" />
             <Button Canvas.Left="21" Canvas.Top="102" Content="Modificar" Height="23" Name="btnModificar" Width="75" Click="btnModificar_Click" IsEnabled="False" />
             <Button Canvas.Left="21" Canvas.Top="151" Content="Eliminar" Height="23" Name="btnEliminar" Width="75" Click="btnEliminar_Click" IsEnabled="False" />
-            <Button Canvas.Left="118" Canvas.Top="413" Content="Guardar" Height="23" Name="btnGuardar" Width="75" Click="btnGuardar_Click" IsEnabled="False" />
+            <Button Canvas.Left="118" Canvas.Top="413" Content="Guardar" Height="23" Name="btnGuardar" Width="75" Click="btnGuardar_Click" IsEnabled="False">
+                <!--<Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="DataContext" Value="{StaticResource data_producto}"/>
+                        <Setter Property="IsEnabled" Value="False" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=esValido}" Value="True">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=esValido}" Value="False">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>-->
+            </Button>
             <Button Canvas.Left="218" Canvas.Top="413" Content="Cancelar" Height="23" Name="btnCancelar" Width="75" Click="btnCancelar_Click" IsEnabled="False" />
             <Image Canvas.Left="21" Canvas.Top="286" Height="150" Name="image1" Stretch="Fill" Width="75" Source="/Vistas;component/Images/lamp.jpg" />
             <Label Canvas.Left="21" Canvas.Top="6" Content="ABM" Height="28" Name="label8" />
             <TextBox Canvas.Left="118" Canvas.Top="372" Height="23" Name="txtRutaImagen" Width="175" IsReadOnly="True" >
                 <TextBox.Text>
-                    <Binding Path="RutaImagen" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
+                    <Binding Path="Imagen" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" ValidatesOnDataErrors="True"/>
                 </TextBox.Text>
             </TextBox>
             <Button Canvas.Left="118" Canvas.Top="343" Content="Subir Imagen" Height="23" Name="btnSubirImagen" Width="74" Click="btnSubirImagen_Click" IsEnabled="False" />
