@@ -1,7 +1,8 @@
 ﻿<Window x:Class="Vistas.Principal"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Principal" Height="312" Width="464" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Principal" Height="312" Width="464" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"
+        Icon="Images/IconoVentana.png">
     <Window.Resources>
         <Style TargetType="{x:Type Canvas}" BasedOn="{StaticResource plantilla_canvas}" >
         </Style>
@@ -30,7 +31,7 @@
         </Canvas>
         <Canvas Height="152" HorizontalAlignment="Left" Margin="161,100,0,0" Name="canvas3" VerticalAlignment="Top" Width="269">
             <Button Content="Cerrar Sesión" Height="23" Name="btnSalir" Width="80" Click="btnCerrarSesion_Click" Canvas.Left="174" Canvas.Top="123" />
-            <Image Source="/Images/logo.png"  Canvas.Left="76" Canvas.Top="19" Height="98" Name="image1" Stretch="Fill" Width="115" />
+            <Image Source="Images/IconoVentana.png"  Canvas.Left="76" Canvas.Top="19" Height="98" Name="image1" Stretch="Fill" Width="115" />
         </Canvas>
     </Grid>
 </Window>

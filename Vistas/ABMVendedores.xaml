@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
-        Title="ABMVendedores" Height="539" Width="855" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="ABMVendedores" Height="539" Width="855" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"
+        Icon="Images/IconoVentana.png">
     <Window.Resources>
         <ObjectDataProvider ObjectType="{x:Type svc:TrabajarVendedores}" MethodName="TraerVendedor" x:Key="data_vendedores"></ObjectDataProvider>
         <ObjectDataProvider ObjectType="{x:Type svc:TrabajarVendedores}" MethodName="TraerVendedores" x:Key="list_vendedores"></ObjectDataProvider>

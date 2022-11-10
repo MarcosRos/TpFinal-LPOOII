@@ -34,6 +34,65 @@ namespace ClasesBase
         {
             get { throw new NotImplementedException(); }
         }
+/*
+        static readonly string[] ValidatedProperties =
+        {
+            "Imagen",
+            "Codigo",
+            "Categoria",
+            "Color",
+            "Descripcion",
+            "Precio"
+        };
+        
+        //sera true si es no hay ningun error
+        public bool isValid 
+        {
+            get
+            {
+                foreach (string property in ValidatedProperties)
+                {
+
+                    if (GetValidationError(property) != null) // there is an error
+                        return false;
+                }
+
+                return true;
+            }
+        }
+
+        private string GetValidationError(string propertyName)
+        {
+            string error = null;
+
+            switch (propertyName)
+            {
+                case "CodProducto":
+                    error = validarCodProducto();
+                    break;
+                case "Categoria":
+                    error = validarCategoria();
+                    break;
+                case "Color":
+                    error = validarColor();
+                    break;
+                case "Descripcion":
+                    error = validarDescripcion();
+                    break;
+                case "Precio":
+                    error = validarPrecio();
+                    break;
+                case "Imagen":
+                    error = validarImagen();
+                    break;
+
+                default:
+                    error = null;
+                    throw new Exception("Unexpected property being validated on Service");
+            }
+
+            return error;
+        }*/
 
         public string this[string columnName]
         {
@@ -42,7 +101,7 @@ namespace ClasesBase
                 string msgError = null;
                 switch (columnName)
                 {
-                    case "CodProducto":
+                    case "Codigo":
                         msgError = validarCodProducto();
                         break;
                     case "Categoria":

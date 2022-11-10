@@ -4,7 +4,8 @@
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
         xmlns:source="clr-namespace:Vistas"
-        Title="ConsultaClientes" Height="508" Width="772" WindowStartupLocation="CenterScreen">
+        Title="ConsultaClientes" Height="508" Width="772" WindowStartupLocation="CenterScreen"
+        Icon="Images/IconoVentana.png">
     <Window.Resources>
         <Style TargetType="{x:Type Canvas}" BasedOn="{StaticResource plantilla_canvas}" >
         </Style>

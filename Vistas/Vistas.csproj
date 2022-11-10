@@ -244,6 +244,7 @@
     <Resource Include="Images\prov.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\IconoVentana.png" />
     <Content Include="Media\intro.mp3" />
     <Content Include="Media\Wildlife.wmv" />
   </ItemGroup>
