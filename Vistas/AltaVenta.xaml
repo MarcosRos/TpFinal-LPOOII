@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        Title="AltaVenta" Height="696" Width="805" WindowStartupLocation="CenterScreen">
+        Title="AltaVenta" Height="696" Width="805" WindowStartupLocation="CenterScreen"
+        Icon="Images/IconoVentana.png">
     <Window.Resources>
         <ObjectDataProvider 
             ObjectType="{x:Type svc:TrabajarClientes}" 

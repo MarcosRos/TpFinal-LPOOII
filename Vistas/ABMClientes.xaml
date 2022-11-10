@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:svc="clr-namespace:ClasesBase;assembly=ClasesBase"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        Title="ABMClientes" Height="486" Width="820" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="ABMClientes" Height="486" Width="820" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"
+        Icon="Images/IconoVentana.png">
     <!-- -->
     <Window.Resources>
         <ObjectDataProvider 

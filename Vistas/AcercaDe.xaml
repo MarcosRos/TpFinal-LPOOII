@@ -32,7 +32,7 @@
             <Label Canvas.Left="28" Canvas.Top="74" Content="Mesconi, Lucas Marcelo 5020" Height="28" Name="label3" />
             <Label Canvas.Left="28" Canvas.Top="108" Content="Rosales, Marcos Tadeo 5011" Height="28" Name="label4" />
             <Label Canvas.Left="28" Canvas.Top="142" Content="Guerra, Francisco Leonel 3590" Height="28" Name="label5" />
-            <Label Canvas.Left="28" Canvas.Top="176" Content="Flores, Bruno David" Height="28" Name="label6" />
+            <Label Canvas.Left="28" Canvas.Top="176" Content="Flores, Bruno David 4364" Height="28" Name="label6" />
             <Label Canvas.Left="6" Canvas.Top="6" Content="Integrantes" Height="28" Name="label1" />
         </Canvas>
         <StackPanel Margin="45,47,341,156">
